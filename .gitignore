@@ -1,0 +1,15 @@
+dist/
+!src/utils/leancloud-storage/dist/
+deploy_versions/
+.temp/
+.rn_temp/
+node_modules/
+.DS_Store
+yarn.lock
+temp_*/
+config/
+.eslintrc.js
+babel.config.js
+global.d.ts
+tsconfig.json
+.editorconfig
