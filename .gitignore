@@ -7,9 +7,13 @@ node_modules/
 .DS_Store
 yarn.lock
 temp_*/
-config/
 .eslintrc.js
 babel.config.js
 global.d.ts
 tsconfig.json
 .editorconfig
+scripts/
+src/packages
+/config/
+!src/config/
+*.generated.js
