@@ -9,7 +9,11 @@
     "css": "sass"
   },
   "scripts": {
-    "build:weapp": "taro build --type weapp",
+		"info": "taro info",
+    "initSub": "jd taro:initSub",
+    "initAppJS": "gulp compileAppJs --type weapp",
+		"updateCodeGen": "jd taro:update",
+    "build:weapp": "yarn updateCodeGen;yarn initAppJS;taro build --type weapp",
     "build:swan": "taro build --type swan",
     "build:alipay": "taro build --type alipay",
     "build:tt": "taro build --type tt",
@@ -47,7 +51,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.8.0",
-    "@tarojs/cli": "^3.0.11",
+    "@tarojs/cli": "3.0.11",
     "@tarojs/mini-runner": "3.0.11",
     "@tarojs/webpack-runner": "3.0.11",
     "@types/react": "^16.0.0",
@@ -61,6 +65,15 @@
     "eslint-plugin-react": "^7.8.2",
     "eslint-plugin-react-hooks": "^1.6.1",
     "stylelint": "9.3.0",
-    "typescript": "^3.7.0"
+    "typescript": "^3.7.0",
+		"gulp": "^4.0.2",
+		"gulp-babel": "^8.0.0",
+		"gulp-load-plugins": "^2.0.5",
+		"gulp-notify": "^3.2.0",
+		"gulp-plumber": "^1.2.1",
+		"gulp-rename": "^2.0.0",
+		"minimist": "^1.2.5",
+    "preval.macro": "^5.0.0",
+		"babel-plugin-macros": "^2.8.0"
   }
 }
