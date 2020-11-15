@@ -33,7 +33,19 @@ export default {
   //   ]
   // }
   pages: ["pages/index/index"],
-  subpackages: [],
+  subpackages: [{
+    "root": "packages/brand",
+    "pages": ["pages/index/index", "pages/cart-list/index", "pages/me/index", "pages/product-detail/index", "pages/order-create/index", "pages/order-lists/index", "pages/order-detail/index", "pages/website/index", "pages/website-detail/index"]
+  }, {
+    "root": "packages/card",
+    "pages": ["pages/index/index"]
+  }, {
+    "root": "packages/orgs",
+    "pages": ["pages/index/index"]
+  }, {
+    "root": "packages/public",
+    "pages": ["pages/index/index", "pages/webview/index", "pages/webviewShare/index", "pages/auth/index", "pages/intro/index", "pages/redirect/index", "pages/test/index"]
+  }],
   window: {
     backgroundTextStyle: "light",
     navigationBarBackgroundColor: "#fff",

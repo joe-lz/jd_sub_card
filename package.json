@@ -9,10 +9,11 @@
     "css": "sass"
   },
   "scripts": {
-		"info": "taro info",
+    "info": "taro info",
+    "copy2packages": "gulp --gulpfile=copy2packages.js build",
     "initSub": "jd taro:initSub",
     "initAppJS": "gulp compileAppJs --type weapp",
-		"updateCodeGen": "jd taro:update",
+    "updateCodeGen": "jd taro:update",
     "build:weapp": "yarn updateCodeGen;yarn initAppJS;taro build --type weapp",
     "build:swan": "taro build --type swan",
     "build:alipay": "taro build --type alipay",
@@ -47,7 +48,8 @@
     "mobx": "^4.8.0",
     "mobx-react": "^6.1.4",
     "react": "^16.10.0",
-    "react-dom": "^16.10.0"
+    "react-dom": "^16.10.0",
+    "taro-ui": "^3.0.0-alpha.3"
   },
   "devDependencies": {
     "@babel/core": "^7.8.0",
@@ -58,22 +60,27 @@
     "@types/webpack-env": "^1.13.6",
     "@typescript-eslint/eslint-plugin": "^2.x",
     "@typescript-eslint/parser": "^2.x",
+    "babel-plugin-global-define": "^1.0.3",
+    "babel-plugin-macros": "^2.8.0",
+    "babel-plugin-module-resolver": "^4.0.0",
     "babel-preset-taro": "3.0.11",
     "eslint": "^6.8.0",
     "eslint-config-taro": "3.0.11",
     "eslint-plugin-import": "^2.12.0",
     "eslint-plugin-react": "^7.8.2",
     "eslint-plugin-react-hooks": "^1.6.1",
-    "stylelint": "9.3.0",
-    "typescript": "^3.7.0",
-		"gulp": "^4.0.2",
-		"gulp-babel": "^8.0.0",
-		"gulp-load-plugins": "^2.0.5",
-		"gulp-notify": "^3.2.0",
-		"gulp-plumber": "^1.2.1",
-		"gulp-rename": "^2.0.0",
-		"minimist": "^1.2.5",
+    "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0",
+    "gulp-less": "^4.0.1",
+    "gulp-load-plugins": "^2.0.5",
+    "gulp-newer": "^1.4.0",
+    "gulp-notify": "^3.2.0",
+    "gulp-plumber": "^1.2.1",
+    "gulp-rename": "^2.0.0",
+    "gulp-sass": "^4.1.0",
+    "minimist": "^1.2.5",
     "preval.macro": "^5.0.0",
-		"babel-plugin-macros": "^2.8.0"
+    "stylelint": "9.3.0",
+    "typescript": "^3.7.0"
   }
 }
