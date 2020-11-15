@@ -392,7 +392,7 @@ class Index extends Component {
                         moduleName: "card",
                         url: `/pages/edit/index`,
                         params: {
-                          bId: this.$router.params.bId,
+                          bId: this.bId,
                         },
                       }),
                     });

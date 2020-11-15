@@ -1,36 +1,42 @@
-import React, { Component } from "react";
-import { View, Button, Text, Navigator } from "@tarojs/components";
-import { observer, inject } from "mobx-react";
+import React, { Component } from 'react'
+import { View, Button, Text } from '@tarojs/components'
 
-import "./index.scss";
+import './index.scss'
 
-type PageStateProps = {
-  store: {};
-};
-
-interface Index {
-  props: PageStateProps;
-}
-
-@inject("store")
-@observer
 class Index extends Component {
-  componentDidMount() {
-    console.log(this.props);
-  }
+  constructor(props) {
+    super(props);
+    this.state = {
+      avatar: null,
+      username: null,
+      position: null,
+      department: null,
+      mobile: null,
+      email: null,
+      wechat: null,
 
-  onShareAppMessage(res) {
-    return {
-      title: "鲸典设计",
-      path: "/pages/index/index"
+      // user: null,
+      // brand: null,
+      bId: null,
     };
   }
 
-  render() {
+  componentWillMount () { }
+
+  componentDidMount () { }
+
+  componentWillUnmount () { }
+
+  componentDidShow () { }
+
+  componentDidHide () { }
+
+  render () {
     return (
-      <View className="index">index</View>
-    );
+      <View className='index'>
+      </View>
+    )
   }
 }
 
-export default Index;
+export default Index
