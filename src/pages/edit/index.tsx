@@ -66,7 +66,7 @@ class Index extends Component {
 
   _handleInput({ key, value }) {
     this.setState({
-      [key]: value,
+      [`${key}`]: value,
     });
   }
 
@@ -188,6 +188,7 @@ class Index extends Component {
             type="text"
             placeholder="请输入"
             value={this.state.username}
+            name="username"
             onChange={e => {
               this._handleInput({ value: e, key: "username" });
             }}
@@ -199,6 +200,7 @@ class Index extends Component {
             type="text"
             placeholder="请输入"
             value={this.state.position}
+            name="position"
             onChange={e => {
               this._handleInput({ value: e, key: "position" });
             }}
@@ -210,6 +212,7 @@ class Index extends Component {
             type="text"
             placeholder="请输入"
             value={this.state.department}
+            name="department"
             onChange={e => {
               this._handleInput({ value: e, key: "department" });
             }}
@@ -225,6 +228,7 @@ class Index extends Component {
             type="number"
             placeholder="请输入"
             value={this.state.mobile}
+            name="mobile"
             onChange={e => {
               this._handleInput({ value: e, key: "mobile" });
             }}
@@ -236,6 +240,7 @@ class Index extends Component {
             type="text"
             placeholder="请输入"
             value={this.state.email}
+            name="email"
             onChange={e => {
               this._handleInput({ value: e, key: "email" });
             }}
@@ -247,6 +252,7 @@ class Index extends Component {
             type="text"
             placeholder="请输入"
             value={this.state.wechat}
+            name="wechat"
             onChange={e => {
               this._handleInput({ value: e, key: "wechat" });
             }}
