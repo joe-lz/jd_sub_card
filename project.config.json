@@ -37,5 +37,46 @@
   "compileType": "miniprogram",
   "simulatorType": "wechat",
   "simulatorPluginLibVersion": {},
-  "condition": {}
+  "condition": {
+    "miniprogram": {
+      "current": -1,
+      "list": [
+        {
+          "id": 0,
+          "name": "名片首页",
+          "pathName": "pages/index/index",
+          "query": "bId=16",
+          "scene": "1011"
+        },
+        {
+          "id": 1,
+          "name": "名片首页(来自二维码)",
+          "pathName": "pages/index/index",
+          "query": "bId=16",
+          "scene": "1011"
+        },
+        {
+          "id": 2,
+          "name": "商品详情",
+          "pathName": "pages/shop/index",
+          "query": "userbrandId=5f3794f2ce811700060a76ba",
+          "scene": "1011"
+        },
+        {
+          "id": 3,
+          "name": "名片编辑",
+          "pathName": "pages/edit/index",
+          "query": "bId=16",
+          "scene": "1011"
+        },
+        {
+          "id": 4,
+          "name": "登录",
+          "pathName": "packages/public/pages/auth/index",
+          "query": "",
+          "scene": "1011"
+        }
+      ]
+    }
+  }
 }

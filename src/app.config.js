@@ -32,7 +32,7 @@ export default {
   //     }
   //   ]
   // }
-  pages: ["pages/index/index"],
+  pages: ["pages/index/index", "pages/edit/index", "pages/shop/index", "pages/order-create/index"],
   subpackages: [{
     "root": "packages/brand",
     "pages": ["pages/index/index", "pages/cart-list/index", "pages/me/index", "pages/product-detail/index", "pages/order-create/index", "pages/order-lists/index", "pages/order-detail/index", "pages/website/index", "pages/website-detail/index"]
@@ -50,8 +50,8 @@ export default {
     backgroundTextStyle: "light",
     navigationBarBackgroundColor: "#fff",
     navigationBarTitleText: "WeChat",
-    navigationBarTextStyle: "black",
-    navigationStyle: "custom"
+    navigationBarTextStyle: "black" // navigationStyle: "custom"
+
   },
   navigateToMiniProgramAppIdList: ["wx8abaf00ee8c3202e", "wx6885acbedba59c14"]
 };
