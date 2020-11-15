@@ -15,6 +15,7 @@ import Touchable from "@_gen/components/Touchable";
 import Logo from "@_gen/components/Logo";
 import JX_Navigator from "@_gen/components/Navigator";
 import CardItem from "@_gen/components/CardItem";
+import makeImgLink from "@_gen/utils/makeImgLink";
 
 class Index extends Component {
   constructor(props) {
@@ -46,7 +47,8 @@ class Index extends Component {
     } = getCurrentInstance().router;
     let userbrandId = null; // card id
     // 更新用户信息
-    if (AV.User.current()) {
+    const currentUser = AV.User.current();
+    if (currentUser) {
       await updateCurUser({ needLogin: true });
     }
     let curUserBrand = null;
@@ -55,11 +57,17 @@ class Index extends Component {
       const newScene = decodeURIComponent(scene).split(",");
       // let [userbrandId, bId] = newScene
       let userbrandId = newScene[0];
+      console.log(newScene);
       if (newScene[1]) {
         // 从官网 名片二维码过来
         bId = newScene[1];
         this.bId = bId;
-        await this.getUserBrand(bId);
+        if (!currentUser) {
+          await updateCurUser({ needLogin: true });
+          return;
+        }
+        curUserBrand = await this.getUserBrand(bId);
+        this.setState({ curUserBrand });
         this.addToMyBrand(bId, 1);
       } else {
         // 从名片二维码分享过来
@@ -95,7 +103,7 @@ class Index extends Component {
 
     this.setState({
       curUserBrand,
-      isSelf: curUserBrand && curUserBrand.user.objectId === (AV.User.current() ? AV.User.current().id : ""),
+      isSelf: curUserBrand && curUserBrand.user.objectId === (currentUser ? currentUser.id : ""),
     });
     Taro.hideLoading();
   }
@@ -131,6 +139,186 @@ class Index extends Component {
         },
       }),
     });
+  }
+
+  handleSaveLocal() {
+    const that = this;
+    Taro.showActionSheet({
+      itemList: ["保存至相册", "添加至通讯录"],
+      success(res) {
+        if (res.tapIndex === 0) {
+          that.handleSaveImg(that);
+        } else if (res.tapIndex === 1) {
+          that.addPhoneContact(that);
+        }
+      },
+      fail(res) {
+        console.log(res.errMsg);
+      },
+    });
+  }
+
+  addPhoneContact(that) {
+    const { mode, isSelf, curUserBrand, cardlist } = that.state;
+    Taro.addPhoneContact({
+      firstName: curUserBrand.username,
+      lastName: curUserBrand.username,
+      // photoFilePath: curUserBrand.username,
+      organization: curUserBrand.brand.title,
+      title: curUserBrand.position,
+      mobilePhoneNumber: curUserBrand.mobile,
+      weChatNumber: curUserBrand.wechat,
+      success: () => {
+        Taro.showToast({
+          title: "保存成功",
+          icon: "success",
+          duration: 2000,
+        });
+      },
+      fail(err) {
+        Taro.showToast({
+          title: "保存失败",
+          icon: "none",
+          duration: 2000,
+        });
+      },
+      complete() {},
+    });
+  }
+
+  handleSaveImg(that) {
+    Taro.getSetting({
+      success(res) {
+        if (!res.authSetting["scope.writePhotosAlbum"]) {
+          Taro.authorize({
+            scope: "scope.writePhotosAlbum",
+            success() {
+              console.log("授权成功");
+              that.handleSave(that);
+            },
+            fail() {
+              Taro.showModal({
+                title: "提示",
+                content: "需要开启保存到相册的权限",
+                confirmText: "好",
+                cancelText: "暂不开启",
+                success(res) {
+                  if (res.confirm) {
+                    Taro.openSetting({
+                      success(resp) {
+                        console.log(resp.authSetting);
+                      },
+                      fail(err) {
+                        console.log({ err });
+                      },
+                    });
+                  } else if (res.cancel) {
+                    console.log("用户点击取消");
+                  }
+                },
+              });
+            },
+          });
+        } else {
+          // 有权限
+          that.handleSave(that);
+        }
+      },
+    });
+  }
+
+  handleSave(that) {
+    Taro.showLoading({
+      title: "保存中...",
+    });
+    const { mode, isSelf, cardlist } = that.state;
+    let card_ho = null;
+    let card_ver = null;
+    if (cardlist && cardlist.length > 0) {
+      cardlist.map(obj => {
+        if (obj.card_width > obj.card_height) {
+          card_ho = obj;
+        } else {
+          card_ver = obj;
+        }
+        return obj;
+      });
+    }
+
+    const curCard = mode === 1 ? card_ver : card_ho;
+    const imgSrc = makeImgLink({
+      url: curCard && curCard.front_img,
+      type: "jpg_contain",
+    });
+    Taro.downloadFile({
+      url: imgSrc,
+      success(res) {
+        //图片保存到本地
+        Taro.saveImageToPhotosAlbum({
+          filePath: res.tempFilePath,
+          success(data) {
+            Taro.showToast({
+              title: "保存成功",
+              icon: "success",
+              duration: 2000,
+            });
+          },
+          fail(err) {
+            Taro.showToast({
+              title: "保存失败",
+              icon: "none",
+              duration: 2000,
+            });
+          },
+          complete() {
+            Taro.hideLoading();
+          },
+        });
+      },
+      complete() {
+        Taro.hideLoading();
+      },
+    });
+  }
+
+  onShareAppMessage(res) {
+    const { mode, isSelf, curUserBrand, cardlist } = this.state;
+    let card_ho = null;
+    let card_ver = null;
+    if (cardlist && cardlist.length > 0) {
+      cardlist.map(obj => {
+        if (obj.card_width > obj.card_height) {
+          card_ho = obj;
+        } else {
+          card_ver = obj;
+        }
+        return obj;
+      });
+    }
+    const curCard = mode === 1 ? card_ver : card_ho;
+    const imgSrc = makeImgLink({
+      url: curCard && curCard.back_img,
+      type: "jpg_share",
+    });
+    const path = getPath({
+      moduleName: "card",
+      url: `/pages/index/index`,
+      params: {
+        scene: curUserBrand.jxId,
+      },
+    });
+    console.log({ path });
+    return {
+      title: `${curUserBrand.username}的名片`,
+      path, // `packages/card/pages/index/index?scene=${curUserBrand.jxId}`
+      imageUrl: imgSrc,
+    };
+  }
+
+  onShareTimeline(res) {
+    return {
+      title: "我的名片",
+    };
   }
 
   render() {

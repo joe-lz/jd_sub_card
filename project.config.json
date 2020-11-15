@@ -50,27 +50,34 @@
         },
         {
           "id": 1,
-          "name": "名片首页(来自二维码)",
+          "name": "名片首页(来自二维码--转载)",
           "pathName": "pages/index/index",
-          "query": "bId=16",
+          "query": "scene=22",
           "scene": "1011"
         },
         {
           "id": 2,
+          "name": "名片首页(来自二维码--官网)",
+          "pathName": "pages/index/index",
+          "query": "scene=,16",
+          "scene": "1011"
+        },
+        {
+          "id": 3,
           "name": "商品详情",
           "pathName": "pages/shop/index",
           "query": "userbrandId=5f3794f2ce811700060a76ba",
           "scene": "1011"
         },
         {
-          "id": 3,
+          "id": 4,
           "name": "名片编辑",
           "pathName": "pages/edit/index",
           "query": "bId=16",
           "scene": "1011"
         },
         {
-          "id": 4,
+          "id": 5,
           "name": "登录",
           "pathName": "packages/public/pages/auth/index",
           "query": "",
