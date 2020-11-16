@@ -82,6 +82,13 @@
           "pathName": "packages/public/pages/auth/index",
           "query": "",
           "scene": "1011"
+        },
+        {
+          "id": 6,
+          "name": "创建订单",
+          "pathName": "pages/order-create/index",
+          "query": "",
+          "scene": "1011"
         }
       ]
     }

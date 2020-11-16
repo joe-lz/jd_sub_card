@@ -1,3 +1,3 @@
 export default {
-  navigationBarTitleText: '电子名片'
+  navigationBarTitleText: '确认名片订单'
 }
