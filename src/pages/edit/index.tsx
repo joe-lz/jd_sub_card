@@ -7,6 +7,7 @@ import "./index.scss";
 import Upload from "@_gen/components/Upload";
 import JX_Button from "@_gen/components/Button";
 import { getUserBrandByJxId, getUserBrand, updateUserBrand } from "@_gen/service/userbrand";
+import { getUserBrandOrCreate } from "@src/utils/getUserBrandOrCreate";
 import getPath from "@_gen/utils/getPath";
 import checkAuth from "@_gen/utils/checkAuth";
 import makeImgLink from "@_gen/utils/makeImgLink";
@@ -37,7 +38,7 @@ class Index extends Component {
   async componentDidMount() {
     const res = await updateCurUser();
     this.setState({ curUser: res.curUser });
-    await this.getUserBrand();
+    await this.getUserBrandOrCreate();
   }
 
   componentWillUnmount() {}
@@ -46,9 +47,9 @@ class Index extends Component {
 
   componentDidHide() {}
 
-  async getUserBrand() {
+  async getUserBrandOrCreate() {
     const { bId } = getCurrentInstance().router.params;
-    const res = (await getUserBrand({ bId }, true)).result;
+    const res = (await getUserBrandOrCreate({ bId }, true)).result;
     const curUserBrand = res && res.length > 0 ? res[0] : {};
 
     this.setState({
@@ -76,7 +77,7 @@ class Index extends Component {
       params: { avatar: urlkey },
       curUserBrand: this.state.curUserBrand, //
     });
-    await this.getUserBrand();
+    await this.getUserBrandOrCreate();
   }
 
   async handleSubmit() {
@@ -103,7 +104,7 @@ class Index extends Component {
         },
         curUserBrand: this.state.curUserBrand,
       });
-      await this.getUserBrand();
+      await this.getUserBrandOrCreate();
       // 生成两张默认名片
       await Taro.request({
         method: "POST",

@@ -16,6 +16,7 @@ import Logo from "@_gen/components/Logo";
 import JX_Navigator from "@_gen/components/Navigator";
 import CardItem from "@_gen/components/CardItem";
 import makeImgLink from "@_gen/utils/makeImgLink";
+import { getUserBrandOrCreate } from "@src/utils/getUserBrandOrCreate";
 
 class Index extends Component {
   constructor(props) {
@@ -66,7 +67,7 @@ class Index extends Component {
           await updateCurUser({ needLogin: true });
           return;
         }
-        curUserBrand = await this.getUserBrand(bId);
+        curUserBrand = await this.getUserBrandOrCreate(bId);
         this.setState({ curUserBrand });
         this.addToMyBrand(bId, 1);
       } else {
@@ -80,7 +81,7 @@ class Index extends Component {
     } else {
       // 从首页进来
       // 获取curUserBrand
-      curUserBrand = await this.getUserBrand(bId);
+      curUserBrand = await this.getUserBrandOrCreate(bId);
       this.setState({ curUserBrand });
       this.addToMyBrand(bId, 1);
     }
@@ -95,7 +96,7 @@ class Index extends Component {
       });
       this.setState({ cardlist: cardlistResult.result });
     } else {
-      this.gotoEdit();
+      this.gotoEdit(bId);
     }
     // // 获取brand
     // await this.props.brandStore.getBrandByJxId({ id: bId })
@@ -120,25 +121,24 @@ class Index extends Component {
     });
   }
 
-  async getUserBrand(bId) {
-    const res = (await getUserBrand({ bId }, false)).result;
+  async getUserBrandOrCreate(bId) {
+    const res = (await getUserBrandOrCreate({ bId }, false)).result;
     if (res.length === 0) {
-      this.gotoEdit();
+      this.gotoEdit(bId);
     } else {
       return res[0];
     }
   }
 
-  gotoEdit() {
-    Taro.redirectTo({
-      url: getPath({
-        moduleName: "card",
-        url: `/pages/edit/index`,
-        params: {
-          bId: this.bId,
-        },
-      }),
+  gotoEdit(bId) {
+    const url = getPath({
+      moduleName: "card",
+      url: `/pages/edit/index`,
+      params: {
+        bId: bId,
+      },
     });
+    Taro.redirectTo({ url });
   }
 
   handleSaveLocal() {
