@@ -16,7 +16,7 @@ function Index(props) {
   const [address, setaddress] = useState();
 
   const _chooseAddress = () => {
-    Taro.chooseAddress().then(res => {
+    Taro.chooseAddress().then((res) => {
       setaddress(res);
       onChange(res);
     });
