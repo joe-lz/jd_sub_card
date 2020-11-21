@@ -14,14 +14,14 @@ class Index extends Component {
       <View className="index">
         <Navigator
           url={getPath({
-            url: "/pages/auth/index",
+            url: "/pages/intro/index",
             moduleName: "public",
           })}
         >
-          <Button type="primary">登录</Button>
+          <Button type="primary">关于鲸典</Button>
         </Navigator>
-        <Text>/pages/auth/index</Text>
-        
+        <Text>/pages/intro/index</Text>
+
         <Navigator
           url={getPath({
             url: "/pages/index/index",
@@ -73,7 +73,7 @@ class Index extends Component {
           <Button type="primary">商品详情</Button>
         </Navigator>
         <Text>/pages/shop/index</Text>
-        
+
         <Navigator
           url={getPath({
             url: "/pages/edit/index",
@@ -95,6 +95,29 @@ class Index extends Component {
           <Button type="primary">创建订单</Button>
         </Navigator>
         <Text>/pages/order-create/index</Text>
+
+        <Navigator
+          url={getPath({
+            url: "/pages/my/index",
+            moduleName: "card",
+            params: {
+            },
+          })}
+        >
+          <Button type="primary">我的私人名片</Button>
+        </Navigator>
+        <Text>/pages/my/index</Text>
+        <Navigator
+          url={getPath({
+            url: "/pages/my/index",
+            moduleName: "card",
+            params: {
+            },
+          })}
+        >
+          <Button type="primary">我的私人名片-edit</Button>
+        </Navigator>
+        <Text>/pages/my/index</Text>
       </View>
     );
   }

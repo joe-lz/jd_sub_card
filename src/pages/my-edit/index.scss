@@ -1,0 +1,33 @@
+.cardmyEdit {
+  padding: 0 30px;
+  padding-bottom: 100px;
+  width: 100vw;
+  min-height: 100vh;
+  background-color: #e5e5e5;
+  &-submit-btn {
+    margin: 60px 0;
+  }
+  &-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text {
+      color: #6c7d95;
+      // font-weight: 500;
+    }
+    &-title {
+      font-size: 28px;
+      color: #c2a87c;
+      // font-weight: 500;
+    }
+    &-tag {
+      margin-left: 10px;
+      padding: 5px 10px;
+      font-size: 28px;
+      background: #c2a87c;
+      border-radius: 8px;
+      color: white;
+      // font-weight: 500;
+    }
+  }
+}

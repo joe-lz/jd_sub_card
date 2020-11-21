@@ -55,6 +55,7 @@ export default {
     navigationBarBackgroundColor: "#fff",
     navigationBarTitleText: "WeChat",
     navigationBarTextStyle: "black",
+    backgroundColor: "#E5E5E5",
     // navigationStyle: "custom"
   },
   navigateToMiniProgramAppIdList: preval`
@@ -62,5 +63,5 @@ export default {
         const navigateToMiniProgramAppIdList = require('./config/navigateToMiniProgramAppIdList')
         return navigateToMiniProgramAppIdList;
       })()
-    `
+    `,
 };

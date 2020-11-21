@@ -1,0 +1,17 @@
+.com {
+  &-menuWrapper {
+    padding-top: 40px;
+    &-title {
+      color:#A7B6C9 ;
+      font-size: 28px;
+    }
+    &-body {
+      margin-top: 20px;
+      padding: 0 30px;
+      overflow: hidden;
+      width: 100%;
+      background-color: white;
+      border-radius: 16px;
+    }
+  }
+}

@@ -89,6 +89,20 @@
           "pathName": "pages/order-create/index",
           "query": "",
           "scene": "1011"
+        },
+        {
+          "id": 7,
+          "name": "我的私人名片",
+          "pathName": "pages/my/index",
+          "query": "",
+          "scene": "1011"
+        },
+        {
+          "id": 8,
+          "name": "我的私人名片-edit",
+          "pathName": "pages/my-edit/index",
+          "query": "",
+          "scene": "1011"
         }
       ]
     }

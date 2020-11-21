@@ -1,0 +1,49 @@
+.com-brandItem-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 120px;
+  background-color: white;
+  &-left {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 120px;
+    height: 100%;
+    &-avatar {
+      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 70px;
+      height: 70px;
+      background-color: #e9ecf0;
+      border-radius: 50%;
+      background-position: center;
+      background-size: cover;
+      border: 1px solid rgba(0, 0, 0, 0.1);
+    }
+  }
+  &-middle {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    &-desc {
+      color: #6c7d95;
+      font-size: 24px;
+    }
+  }
+  &-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 150px;
+    height: 100%;
+    &-desc {
+      font-size: 24px;
+      color: #f05858;
+    }
+  }
+}
