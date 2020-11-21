@@ -32,7 +32,7 @@ export default {
   //     }
   //   ]
   // }
-  pages: ["pages/page-list/index", "pages/index/index", "pages/edit/index", "pages/shop/index", "pages/order-create/index", "pages/my/index", "pages/my-edit/index"],
+  pages: ["pages/page-list/index", "pages/index/index", "pages/edit/index", "pages/shop/index", "pages/order-create/index", "pages/my/index", "pages/my-edit/index", "pages/buy-intro/index", "pages/choose-template/index"],
   subpackages: [{
     "root": "packages/brand",
     "pages": ["pages/index/index", "pages/cart-list/index", "pages/me/index", "pages/product-detail/index", "pages/order-create/index", "pages/order-lists/index", "pages/order-detail/index", "pages/website/index", "pages/website-detail/index"]

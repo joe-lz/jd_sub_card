@@ -107,9 +107,10 @@ class Index extends Component {
           <Button type="primary">我的私人名片</Button>
         </Navigator>
         <Text>/pages/my/index</Text>
+        
         <Navigator
           url={getPath({
-            url: "/pages/my/index",
+            url: "/pages/my-edit/index",
             moduleName: "card",
             params: {
             },
@@ -117,7 +118,19 @@ class Index extends Component {
         >
           <Button type="primary">我的私人名片-edit</Button>
         </Navigator>
-        <Text>/pages/my/index</Text>
+        <Text>/pages/my-edit/index</Text>
+
+        <Navigator
+          url={getPath({
+            url: "/pages/choose-template/index",
+            moduleName: "card",
+            params: {
+            },
+          })}
+        >
+          <Button type="primary">选择名片</Button>
+        </Navigator>
+        <Text>/pages/choose-template/index</Text>
       </View>
     );
   }

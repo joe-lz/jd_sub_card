@@ -103,6 +103,13 @@
           "pathName": "pages/my-edit/index",
           "query": "",
           "scene": "1011"
+        },
+        {
+          "id": 9,
+          "name": "选择卡片",
+          "pathName": "pages/choose-template/index",
+          "query": "",
+          "scene": "1011"
         }
       ]
     }

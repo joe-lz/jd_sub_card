@@ -6,4 +6,6 @@ module.exports = [
   "pages/order-create/index",
   "pages/my/index",
   "pages/my-edit/index",
+  "pages/buy-intro/index",
+  "pages/choose-template/index",
 ];

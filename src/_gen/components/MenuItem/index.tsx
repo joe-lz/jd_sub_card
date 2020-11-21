@@ -8,14 +8,53 @@ import AV from "@_gen/utils/leancloud-storage/dist/av-weapp.js";
 import getPath from "@_gen/utils/getPath";
 import checkAuth from "@_gen/utils/checkAuth";
 import makeImgLink from "@_gen/utils/makeImgLink";
+import Upload from "@_gen/components/Upload";
 
 function Index(props) {
-  const { title } = props;
+  const { title, type = "text", height = 50, value, onChange } = props;
+  const handleAvatarChange = urlkey => {};
+
   return (
-    <View className="com-menuItem">
+    <View className="com-menuItem" style={{ height: height }}>
       <Text className="com-menuItem-title">{title}</Text>
       <View className="com-menuItem-body">
-        <Input placeholder="请输入" placeholder-style="color: #A7B6C9"/>
+        {type === "image" ? (
+          <Upload
+            onChange={urlkey => {
+              handleAvatarChange(urlkey);
+            }}
+            renderContent={
+              <View className="com-menuItem-body-image">
+                {value ? (
+                  <Image
+                    style={{ position: "relative" }}
+                    src={makeImgLink({
+                      url: value,
+                      type: "jpg",
+                    })}
+                    mode="aspectFill"
+                    className="com-menuItem-body-image-content"
+                  ></Image>
+                ) : (
+                  <View className="com-menuItem-body-image-content">
+                    <AtIcon prefixClass="icon" value="camera" size="24" color="white"></AtIcon>
+                  </View>
+                )}
+              </View>
+            }
+          />
+        ) : (
+          <Input
+            placeholder="请输入"
+            placeholder-style="color: #A7B6C9"
+            type={type || "text"}
+            value={value}
+            onInput={e => {
+              onChange(e.detail.value);
+            }}
+            //
+          />
+        )}
       </View>
     </View>
   );
