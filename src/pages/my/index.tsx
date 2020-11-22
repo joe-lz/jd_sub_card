@@ -19,6 +19,8 @@ import iconPrint from "@src/images/icon-print.png";
 import iconFly from "@src/images/icon-fly.png";
 import iconShare from "@src/images/icon-share.png";
 import iconDownload from "@src/images/icon-download.png";
+import iconTel from "@src/images/icon-tel.png";
+import iconWechat from "@src/images/icon-wechat.png";
 
 class Index extends Component {
   constructor(props) {
@@ -40,7 +42,9 @@ class Index extends Component {
     });
   }
 
-  async componentDidMount() {
+  async componentDidMount() {}
+
+  async componentDidShow() {
     const { mycardId } = getCurrentInstance().router.params;
 
     let curUser = AV.User.current();
@@ -51,6 +55,18 @@ class Index extends Component {
       res_mycard = await getMyCardById({ id: mycardId });
       this.setState({ mycardId });
     } else {
+      if (!curUser) {
+        Taro.navigateTo({
+          url: getPath({
+            moduleName: "public",
+            url: `/pages/auth/index`,
+            params: {
+              type: 1,
+            },
+          }),
+        });
+        return;
+      }
       res_mycard = await getMyCard();
     }
     this.setState({
@@ -73,7 +89,11 @@ class Index extends Component {
       if (res.target.dataset.name === "invite-worker") {
         title = `${curMyCard.name}邀请你使用鲸典智能名片~`;
         imageUrl = "https://static.ccrgt.com/images/961f60f7-a8aa-4eca-8df7-2f71ff945b5e.jpg";
-        path = "/page/index/index";
+        path = getPath({
+          moduleName: "jd_taro",
+          url: `/pages/index/index`,
+          params: {},
+        });
       } else if (res.target.dataset.name === "share-othersCard") {
         title = `${curMyCard.name}的智能名片`;
         imageUrl = imageUrl;
@@ -261,6 +281,29 @@ class Index extends Component {
               </View>
               {this.state.mycardId ? (
                 <View className="cardmy-body-content">
+                  <View className="cardmy-body-contact">
+                    <View
+                      className="cardmy-body-contact-item"
+                      onClick={() => {
+                        Taro.makePhoneCall({
+                          phoneNumber: curMyCard.mobile,
+                        });
+                      }}
+                    >
+                      <View className="cardmy-body-contact-item-top">
+                        <Image className="cardmy-body-contact-item-icon" src={iconTel} mode="aspectFit" />
+                        <Text>打电话</Text>
+                      </View>
+                      <Text className="cardmy-body-contact-item-desc">{curMyCard.mobile}</Text>
+                    </View>
+                    <View className="cardmy-body-contact-item">
+                      <View className="cardmy-body-contact-item-top">
+                        <Image className="cardmy-body-contact-item-icon" src={iconWechat} mode="aspectFit" />
+                        <Text>加微信</Text>
+                      </View>
+                      <Text className="cardmy-body-contact-item-desc">{curMyCard.wechat}</Text>
+                    </View>
+                  </View>
                   <View className="cardmy-body-menu">
                     <Navigator
                       className="cardmy-body-menu-item"
