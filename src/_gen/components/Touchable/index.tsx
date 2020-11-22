@@ -25,6 +25,7 @@ function Index(props) {
       // app-id={this.props['app-id']}
       // extra-data={this.props['extra-data']}
       // version={this.props.version}
+      data-name={props['data-name']}
     >
       {props.children}
     </Button>

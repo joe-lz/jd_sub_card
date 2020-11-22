@@ -59,6 +59,25 @@
       padding-bottom: 60px;
       width: 100vw;
       background-color: #3b3b3b;
+      &-share {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100px;
+        background-color: #2E58D6;
+        &-title {
+          margin-left: 15px;
+          font-size: 32px;
+          font-weight: 500;
+          color: white;
+        }
+      }
+    }
+    &-toMyBtn {
+      padding: 40px 0;
+      color: white;
+      text-align: center;
+      opacity: 0.8;
     }
     &-link {
       padding: 30px 0;

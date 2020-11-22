@@ -3,7 +3,7 @@
  * @Author: bangdong.chen
  * @Date: 2020-05-20 22:17:11
  * @LastEditors: bangdong.chen
- * @LastEditTime: 2020-11-22 17:44:52
+ * @LastEditTime: 2020-11-22 12:20:30
  * @FilePath: /fe-taro-jinxi/src/services/usercard.js
  */
 import Taro from "@tarojs/taro";

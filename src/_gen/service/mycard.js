@@ -3,7 +3,7 @@
  * @Author: bangdong.chen
  * @Date: 2020-05-20 22:17:11
  * @LastEditors: bangdong.chen
- * @LastEditTime: 2020-11-22 17:45:48
+ * @LastEditTime: 2020-11-22 18:50:37
  * @FilePath: /fe-taro-jinxi/src/services/usercard.js
  */
 import Taro from "@tarojs/taro";
@@ -17,6 +17,20 @@ export async function getMyCard(params) {
     queryMyCard.first().then(res => {
       resolve({
         result: res ? res.toJSON() : null,
+        code: 0,
+        msg: "success",
+      });
+    });
+  });
+}
+
+export async function getMyCardById(params) {
+  const queryMyCard = new AV.Query("MyCard");
+  queryMyCard.include("card");
+  return new Promise(resolve => {
+    queryMyCard.get(params.id).then(res => {
+      resolve({
+        result: JSON.parse(JSON.stringify(res)),
         code: 0,
         msg: "success",
       });
