@@ -13,6 +13,7 @@ import Touchable from "@_gen/components/Touchable";
 import Counter from "@_gen/components/Counter";
 import JX_Button from "@_gen/components/Button";
 import getPath from "@_gen/utils/getPath";
+import { getMyCard } from "@_gen/service/mycard";
 
 class Index extends Component {
   constructor(props) {
@@ -31,15 +32,29 @@ class Index extends Component {
 
   async componentDidMount() {
     Taro.showLoading({ title: "加载中" });
-    const { userbrandId } = getCurrentInstance().router.params;
-    // 获取名片列表
-    const cardlistResult = (
-      await getUserCard({
-        userbrandid: userbrandId,
-        userid: AV.User.current().id,
-      })
-    ).result;
-    this.setState({ cardlist: cardlistResult });
+    const { userbrandId, mycard_id } = getCurrentInstance().router.params;
+    if (userbrandId) {
+      // 获取名片列表
+      const cardlistResult = (
+        await getUserCard({
+          userbrandid: userbrandId,
+          userid: AV.User.current().id,
+        })
+      ).result;
+      this.setState({ cardlist: cardlistResult });
+    } else if (mycard_id) {
+      // 获取我的名片
+      const res_mycard = await getMyCard();
+      this.setState({
+        cardlist: [
+          {
+            ...res_mycard.result,
+            card_width: res_mycard.result.isVertical ? 270 : 450,
+            card_height: res_mycard.result.isVertical ? 450 : 270,
+          },
+        ],
+      });
+    }
     Taro.hideLoading();
   }
 
@@ -115,16 +130,18 @@ class Index extends Component {
                     );
                   })}
                 </Swiper>
-                <View className="cardshop-swiper-dots">
-                  {cardlist.map((obj, index) => {
-                    return (
-                      <View
-                        key={`${index + 1}`}
-                        className={`cardshop-swiper-dot ${current === index && "cardshop-swiper-dot-active"}`}
-                      ></View>
-                    );
-                  })}
-                </View>
+                {cardlist && cardlist.length > 1 && (
+                  <View className="cardshop-swiper-dots">
+                    {cardlist.map((obj, index) => {
+                      return (
+                        <View
+                          key={`${index + 1}`}
+                          className={`cardshop-swiper-dot ${current === index && "cardshop-swiper-dot-active"}`}
+                        ></View>
+                      );
+                    })}
+                  </View>
+                )}
               </View>
               <View className="cardshop-body">
                 <View className="cardshop-body-info">

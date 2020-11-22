@@ -74,6 +74,13 @@ class Index extends Component {
       await createMyCard(this.state);
     }
     Taro.hideLoading();
+    Taro.redirectTo({
+      url: getPath({
+        moduleName: "card",
+        url: `/pages/choose-template/index`,
+        params: {},
+      }),
+    });
   }
 
   render() {

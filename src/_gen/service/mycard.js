@@ -3,7 +3,7 @@
  * @Author: bangdong.chen
  * @Date: 2020-05-20 22:17:11
  * @LastEditors: bangdong.chen
- * @LastEditTime: 2020-11-21 16:49:59
+ * @LastEditTime: 2020-11-22 17:45:48
  * @FilePath: /fe-taro-jinxi/src/services/usercard.js
  */
 import Taro from "@tarojs/taro";
@@ -12,6 +12,7 @@ import AV from "@_gen/utils/leancloud-storage/dist/av-weapp.js";
 export async function getMyCard(params) {
   const queryMyCard = new AV.Query("MyCard");
   queryMyCard.equalTo("user", AV.User.current());
+  queryMyCard.include("card");
   return new Promise(resolve => {
     queryMyCard.first().then(res => {
       resolve({
