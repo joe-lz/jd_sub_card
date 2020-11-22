@@ -296,7 +296,16 @@ class Index extends Component {
                       </View>
                       <Text className="cardmy-body-contact-item-desc">{curMyCard.mobile}</Text>
                     </View>
-                    <View className="cardmy-body-contact-item">
+                    <View
+                      className="cardmy-body-contact-item"
+                      onClick={() => {
+                        Taro.showToast({
+                          title: "直接微信搜索该微信id",
+                          icon: "none",
+                          duration: 2000,
+                        });
+                      }}
+                    >
                       <View className="cardmy-body-contact-item-top">
                         <Image className="cardmy-body-contact-item-icon" src={iconWechat} mode="aspectFit" />
                         <Text>加微信</Text>
