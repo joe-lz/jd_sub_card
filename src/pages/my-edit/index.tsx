@@ -136,6 +136,8 @@ class Index extends Component {
           ></MenuItem>
           <MenuItem
             title="标志"
+            height={80}
+            type="image"
             value={co_logo}
             onChange={e => {
               this._handleInput({ value: e, key: "co_logo" });

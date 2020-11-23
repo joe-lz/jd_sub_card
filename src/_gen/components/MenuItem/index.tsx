@@ -12,7 +12,6 @@ import Upload from "@_gen/components/Upload";
 
 function Index(props) {
   const { title, type = "text", height = 50, value, onChange } = props;
-  const handleAvatarChange = urlkey => {};
 
   return (
     <View className="com-menuItem" style={{ height: height }}>
@@ -21,7 +20,7 @@ function Index(props) {
         {type === "image" ? (
           <Upload
             onChange={urlkey => {
-              handleAvatarChange(urlkey);
+              onChange(urlkey);
             }}
             renderContent={
               <View className="com-menuItem-body-image">
