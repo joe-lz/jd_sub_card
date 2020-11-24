@@ -35,8 +35,12 @@ function Index(props) {
                     className="com-menuItem-body-image-content"
                   ></Image>
                 ) : (
-                  <View className="com-menuItem-body-image-content">
-                    <AtIcon prefixClass="icon" value="camera" size="24" color="white"></AtIcon>
+                  // <View className="com-menuItem-body-image-content">
+                  //   <AtIcon prefixClass="icon" value="camera" size="24" color="white"></AtIcon>
+                  // </View>
+                  <View className="com-menuItem-body-image-empty">
+                    <Text className="com-menuItem-body-image-content-uploadtext">上传</Text>
+                    <AtIcon prefixClass="icon" value="jichu_you_line" size="14" color="#A7B6C9"></AtIcon>
                   </View>
                 )}
               </View>
