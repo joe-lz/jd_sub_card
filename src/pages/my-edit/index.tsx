@@ -9,6 +9,7 @@ import MenuWrapper from "@_gen/components/MenuWrapper";
 import MenuItem from "@_gen/components/MenuItem";
 import JX_Button from "@_gen/components/Button";
 import { getMyCard, createMyCard, updateMyCard } from "@_gen/service/mycard";
+import ColorPicker from "./ColorPicker";
 
 class Index extends Component {
   constructor(props) {
@@ -26,27 +27,6 @@ class Index extends Component {
       email: null,
       mobile: null,
       wechat: null,
-
-      colorData: {
-        //基础色相，即左侧色盘右上顶点的颜色，由右侧的色相条控制
-        hueData: {
-          colorStopRed: 255,
-          colorStopGreen: 0,
-          colorStopBlue: 0,
-        },
-        //选择点的信息（左侧色盘上的小圆点，即你选择的颜色）
-        pickerData: {
-          x: 0, //选择点x轴偏移量
-          y: 480, //选择点y轴偏移量
-          red: 0,
-          green: 0,
-          blue: 0,
-          hex: "#000000",
-        },
-        //色相控制条的位置
-        barY: 0,
-      },
-      rpxRatio: 1, //此值为你的屏幕CSS像素宽度/750，单位rpx实际像素
     };
   }
 
@@ -73,16 +53,6 @@ class Index extends Component {
       });
     }
     Taro.hideLoading();
-  }
-
-  //选择改色时触发（在左侧色盘触摸或者切换右侧色相条）
-  onChangeColor(e) {
-    console.log(e);
-    
-    //返回的信息在e.detail.colorData中
-    this.setData({
-      colorData: e.detail.colorData,
-    });
   }
 
   _handleInput({ key, value }) {
@@ -119,12 +89,6 @@ class Index extends Component {
     return (
       <View className="cardmyEdit">
         <MenuWrapper title="个人信息">
-          <color-picker
-            class="color-picker"
-            colorData={this.state.colorData}
-            rpxRatio={this.state.rpxRatio}
-            bindchangecolor={this.onChangeColor.bind(this)}
-          ></color-picker>
           <MenuItem
             title="头像"
             height={80}
