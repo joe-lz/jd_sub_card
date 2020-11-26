@@ -420,7 +420,7 @@ class Index extends Component {
                       <AtIcon prefixClass="icon" value="share" size="16" color="white"></AtIcon>
                       <Text className="cardmy-body-footer-share-title">分享名片</Text>
                     </Touchable>
-                    <View className="cardmy-body-link">
+                    {/* <View className="cardmy-body-link">
                       <Navigator
                         className="cardmy-body-link-title"
                         url={getPath({
@@ -441,7 +441,7 @@ class Index extends Component {
                       >
                         4999元特惠
                       </Navigator>
-                    </View>
+                    </View> */}
                   </View>
                 </>
               )}
