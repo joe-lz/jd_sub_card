@@ -11,7 +11,7 @@ import makeImgLink from "@_gen/utils/makeImgLink";
 import Upload from "@_gen/components/Upload";
 
 function Index(props) {
-  const { title, type = "text", height = 50, value, onChange } = props;
+  const { title, type = "text", height = 50, value, onChange, name } = props;
   const [showActionSheet, setshowActionSheet] = useState(false);
 
   const renderRight = type => {
@@ -67,6 +67,7 @@ function Index(props) {
           placeholder-style="color: #A7B6C9"
           type={type || "text"}
           value={value}
+          name={name}
           onInput={e => {
             onChange(e.detail.value);
           }}

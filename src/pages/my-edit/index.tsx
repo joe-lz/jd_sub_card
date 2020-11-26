@@ -149,6 +149,7 @@ class Index extends Component {
             height={80}
             type="image"
             value={avatar}
+            name="avatar"
             onChange={e => {
               this._handleInput({ value: e, key: "avatar" });
             }}
@@ -156,6 +157,7 @@ class Index extends Component {
           <MenuItem
             title="姓名"
             value={name}
+            name="name"
             onChange={e => {
               this._handleInput({ value: e, key: "name" });
             }}
@@ -163,6 +165,7 @@ class Index extends Component {
           <MenuItem
             title="部门"
             value={department}
+            name="department"
             onChange={e => {
               this._handleInput({ value: e, key: "department" });
             }}
@@ -170,6 +173,7 @@ class Index extends Component {
           <MenuItem
             title="职位"
             value={position}
+            name="position"
             onChange={e => {
               this._handleInput({ value: e, key: "position" });
             }}
@@ -179,6 +183,7 @@ class Index extends Component {
           <MenuItem
             title="组织名称"
             value={co_name}
+            name="co_name"
             onChange={e => {
               this._handleInput({ value: e, key: "co_name" });
             }}
@@ -186,6 +191,7 @@ class Index extends Component {
           <MenuItem
             title="简称"
             value={co_name_short}
+            name="co_name_short"
             onChange={e => {
               this._handleInput({ value: e, key: "co_name_short" });
             }}
@@ -195,6 +201,7 @@ class Index extends Component {
             height={80}
             type="image"
             value={co_logo}
+            name="co_logo"
             onChange={(path, temppath) => {
               this._handleInput({ value: path, key: "co_logo", temppath });
             }}
@@ -204,6 +211,7 @@ class Index extends Component {
               title="主题色"
               type="actionsheet"
               value={co_color}
+              name="co_color"
               actionsheetArr={co_palette}
               onChange={e => {
                 this._handleInput({ value: e, key: "co_color" });
@@ -213,6 +221,7 @@ class Index extends Component {
           <MenuItem
             title="地址"
             value={co_address}
+            name="co_address"
             onChange={e => {
               this._handleInput({ value: e, key: "co_address" });
             }}
@@ -220,6 +229,7 @@ class Index extends Component {
           <MenuItem
             title="官网地址"
             value={co_site}
+            name="co_site"
             onChange={e => {
               this._handleInput({ value: e, key: "co_site" });
             }}
@@ -230,6 +240,7 @@ class Index extends Component {
             title="手机号"
             type="number"
             value={mobile}
+            name="mobile"
             onChange={e => {
               this._handleInput({ value: e, key: "mobile" });
             }}
@@ -237,6 +248,7 @@ class Index extends Component {
           <MenuItem
             title="邮箱"
             value={email}
+            name="email"
             onChange={e => {
               this._handleInput({ value: e, key: "email" });
             }}
@@ -244,6 +256,7 @@ class Index extends Component {
           <MenuItem
             title="微信号"
             value={wechat}
+            name="wechat"
             onChange={e => {
               this._handleInput({ value: e, key: "wechat" });
             }}
