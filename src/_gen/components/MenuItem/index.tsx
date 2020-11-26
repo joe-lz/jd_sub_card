@@ -48,13 +48,17 @@ function Index(props) {
       );
     } else if (type === "actionsheet") {
       return (
-        <Text
-          onClick={() => {
-            setshowActionSheet(true);
-          }}
-        >
-          {value || "请选择主题色"}
-        </Text>
+        <View className="com-menuItem-body">
+          <View
+            className="com-menuItem-palette"
+            onClick={() => {
+              setshowActionSheet(true);
+            }}
+          >
+            <View className="com-menuItem-palette-color" style={{ backgroundColor: value }}></View>
+            <Text className="com-menuItem-palette">{value || "请选择主题色"}</Text>
+          </View>
+        </View>
       );
     } else {
       return (
@@ -78,7 +82,7 @@ function Index(props) {
       {type === "actionsheet" && (
         <AtActionSheet
           isOpened={showActionSheet}
-          title="请选择名片主题色，将用于名片生成"
+          title="请选择名片主题色，由logo图片提取"
           cancelText="取消"
           onCancel={() => {
             setshowActionSheet(false);
@@ -92,9 +96,9 @@ function Index(props) {
                   setshowActionSheet(false);
                 }}
               >
-                <View className="co-menuitem-palette">
-                  <View className="co-menuitem-palette-color" style={{ backgroundColor: obj }}></View>
-                  <Text className="co-menuitem-palette-desc">{obj}</Text>
+                <View className="com-menuItem-palette">
+                  <View className="com-menuItem-palette-color" style={{ backgroundColor: obj }}></View>
+                  <Text className="com-menuItem-palette-desc">{obj}</Text>
                 </View>
               </AtActionSheetItem>
             );

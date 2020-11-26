@@ -67,7 +67,7 @@ class Index extends Component {
     });
     if (key === "co_logo") {
       const ctx = Taro.createCanvasContext("myCanvas");
-      ctx.drawImage(temppath.tempFilePaths[0], 0, 0, 300, 150);
+      ctx.drawImage(temppath.tempFilePaths[0], 0, 0, 100, 100);
       ctx.draw(false, () => {
         Taro.canvasGetImageData({
           canvasId: "myCanvas",
@@ -143,7 +143,6 @@ class Index extends Component {
     } = this.state;
     return (
       <View className="cardmyEdit">
-        <Canvas canvas-id="myCanvas"></Canvas>
         <MenuWrapper title="个人信息">
           <MenuItem
             title="头像"
@@ -256,7 +255,7 @@ class Index extends Component {
           type="primary"
           onClick={this._handleSubmit.bind(this)} //
         />
-        <View className="cardmyEdit-link">
+        {/* <View className="cardmyEdit-link">
           <Text>嫌麻烦？</Text>
           <Navigator
             className="cardmyEdit-link-title"
@@ -278,6 +277,9 @@ class Index extends Component {
           >
             99元特惠
           </Navigator>
+        </View> */}
+        <View className="cardmyEdit-canvas">
+          <Canvas canvas-id="myCanvas"></Canvas>
         </View>
       </View>
     );

@@ -1,9 +1,12 @@
 .cardmyEdit {
   padding: 0 30px;
-  padding-bottom: 100px;
+  // padding-bottom: 100px;
   width: 100vw;
   min-height: 100vh;
   background-color: #e5e5e5;
+  &-canvas {
+    opacity: 0;
+  }
   &-submit-btn {
     margin: 60px 0;
   }
@@ -31,21 +34,5 @@
       color: white;
       // font-weight: 500;
     }
-  }
-}
-
-
-.co-menuitem-palette {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  &-color {
-    margin-right: 15px;
-    width: 50px;
-    height: 50px;
-  }
-  &-desc {
-    display: block;
-    width: 150px;
   }
 }
