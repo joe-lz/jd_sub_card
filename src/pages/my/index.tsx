@@ -313,7 +313,7 @@ class Index extends Component {
                       <Text className="cardmy-body-contact-item-desc">{curMyCard.wechat}</Text>
                     </View>
                   </View>
-                  <View className="cardmy-body-menu">
+                  {/* <View className="cardmy-body-menu">
                     <Navigator
                       className="cardmy-body-menu-item"
                       url={getPath({
@@ -326,7 +326,7 @@ class Index extends Component {
                       <Text className="cardmy-body-menu-item-title">企业介绍</Text>
                       <AtIcon prefixClass="icon" value="jichu_you_line" size="14" color="white"></AtIcon>
                     </Navigator>
-                  </View>
+                  </View> */}
                   <View className="cardmy-body-menu">
                     <Touchable my-class="cardmy-body-menu-item" opentype="share" data-name="share-othersCard">
                       <Image className="cardmy-body-menu-item-icon" src={iconShare} mode="aspectFit" />
