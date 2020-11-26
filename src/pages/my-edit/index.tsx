@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Taro, { getCurrentInstance } from "@tarojs/taro";
-import { View, Button, Text, Navigator } from "@tarojs/components";
+import { View, Button, Text, Navigator, Canvas } from "@tarojs/components";
+import colorThief from "miniapp-color-thief";
 
 import "./index.scss";
 import getPath from "@_gen/utils/getPath";
@@ -22,6 +23,8 @@ class Index extends Component {
       co_name: null,
       co_name_short: null,
       co_logo: null,
+      co_color: null,
+      co_palette: [],
       co_address: null,
       co_site: null,
       email: null,
@@ -45,6 +48,8 @@ class Index extends Component {
         co_name: res.result.co_name,
         co_name_short: res.result.co_name_short,
         co_logo: res.result.co_logo,
+        co_color: res.result.co_color,
+        co_palette: res.result.co_palette,
         co_address: res.result.co_address,
         co_site: res.result.co_site,
         email: res.result.email,
@@ -55,15 +60,50 @@ class Index extends Component {
     Taro.hideLoading();
   }
 
-  _handleInput({ key, value }) {
+  _handleInput({ key, value, temppath }) {
+    let that = this;
     this.setState({
       [`${key}`]: value,
     });
+    if (key === "co_logo") {
+      const ctx = Taro.createCanvasContext("myCanvas");
+      ctx.drawImage(temppath.tempFilePaths[0], 0, 0, 300, 150);
+      ctx.draw(false, () => {
+        Taro.canvasGetImageData({
+          canvasId: "myCanvas",
+          x: 0,
+          y: 0,
+          width: 100,
+          height: 100,
+          success: res => {
+            let palette = colorThief(res.data)
+              .palette()
+              .getHex();
+            that.setState({ co_palette: palette });
+          },
+        });
+      });
+    }
   }
 
   async _handleSubmit() {
     console.log(this.state);
-    const { avatar, name, position, department, co_name, co_name_short, co_logo, co_address, co_site, email, mobile, wechat } = this.state;
+    const {
+      avatar,
+      name,
+      position,
+      department,
+      co_name,
+      co_name_short,
+      co_logo,
+      co_color,
+      co_palette,
+      co_address,
+      co_site,
+      email,
+      mobile,
+      wechat,
+    } = this.state;
     // if (!name) {
     //   Taro.showToast({ title: "请填写完整信息", icon: "none", duration: 1000 });
     //   return;
@@ -85,9 +125,25 @@ class Index extends Component {
   }
 
   render() {
-    const { avatar, name, position, department, co_name, co_name_short, co_logo, co_address, co_site, email, mobile, wechat } = this.state;
+    const {
+      avatar,
+      name,
+      position,
+      department,
+      co_name,
+      co_name_short,
+      co_logo,
+      co_color,
+      co_palette,
+      co_address,
+      co_site,
+      email,
+      mobile,
+      wechat,
+    } = this.state;
     return (
       <View className="cardmyEdit">
+        <Canvas canvas-id="myCanvas"></Canvas>
         <MenuWrapper title="个人信息">
           <MenuItem
             title="头像"
@@ -140,10 +196,21 @@ class Index extends Component {
             height={80}
             type="image"
             value={co_logo}
-            onChange={e => {
-              this._handleInput({ value: e, key: "co_logo" });
+            onChange={(path, temppath) => {
+              this._handleInput({ value: path, key: "co_logo", temppath });
             }}
           ></MenuItem>
+          {co_palette.length > 0 && (
+            <MenuItem
+              title="主题色"
+              type="actionsheet"
+              value={co_color}
+              actionsheetArr={co_palette}
+              onChange={e => {
+                this._handleInput({ value: e, key: "co_color" });
+              }}
+            ></MenuItem>
+          )}
           <MenuItem
             title="地址"
             value={co_address}

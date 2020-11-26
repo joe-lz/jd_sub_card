@@ -38,7 +38,7 @@ function Index(props) {
           name: `card_avatar/${Date.now()}_${Math.floor(Math.random() * 1000000000000)}`,
         }).then(keyname => {
           // 保存到用户信息中
-          onChange(keyname);
+          onChange(keyname, res);
         });
       })
       .catch(error => {

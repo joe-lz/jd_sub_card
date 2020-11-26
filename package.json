@@ -49,6 +49,7 @@
     "mobx-react": "^6.1.4",
     "react": "^16.10.0",
     "react-dom": "^16.10.0",
+    "miniapp-color-thief": "^1.0.5",
     "taro-ui": "^3.0.0-alpha.3"
   },
   "devDependencies": {
