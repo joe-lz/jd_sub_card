@@ -69,11 +69,21 @@ class Index extends Component {
       }
       res_mycard = await getMyCard();
     }
-    this.setState({
-      curMyCard: res_mycard.result,
-      title: mycardId ? "TA的名片" : "我的名片",
-    });
     Taro.hideLoading();
+    if (res_mycard.result) {
+      this.setState({
+        curMyCard: res_mycard.result,
+        title: mycardId ? "TA的名片" : "我的名片",
+      });
+    } else {
+      Taro.redirectTo({
+        url: getPath({
+          moduleName: "card",
+          url: `/pages/my-edit/index`,
+          params: {},
+        }),
+      });
+    }
   }
 
   onShareAppMessage(res) {
