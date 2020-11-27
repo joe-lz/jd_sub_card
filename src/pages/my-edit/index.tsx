@@ -79,7 +79,7 @@ class Index extends Component {
             let palette = colorThief(res.data)
               .palette()
               .getHex();
-            that.setState({ co_palette: palette });
+            that.setState({ co_palette: Array.from(new Set(palette)) });
           },
         });
       });

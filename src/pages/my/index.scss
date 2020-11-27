@@ -78,6 +78,10 @@
         height: 100px;
         background-color: rgba(255, 255, 255, 0.2);
         border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        &-round {
+          border-radius: 16px;
+          overflow: hidden;
+        }
         &:last-child {
           border-bottom: none;
         }
