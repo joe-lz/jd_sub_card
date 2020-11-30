@@ -1,3 +1,4 @@
 export default {
-  navigationBarTitleText: '编辑名片'
-}
+  navigationBarTitleText: "名片信息",
+  navigationBarBackgroundColor: "#E5E5E5",
+};

@@ -12,6 +12,8 @@ import getPath from "@_gen/utils/getPath";
 import checkAuth from "@_gen/utils/checkAuth";
 import makeImgLink from "@_gen/utils/makeImgLink";
 import updateCurUser from "@_gen/utils/updateCurUser";
+import MenuWrapper from "@_gen/components/MenuWrapper";
+import MenuItem from "@_gen/components/MenuItem";
 
 class Index extends Component {
   constructor(props) {
@@ -150,119 +152,77 @@ class Index extends Component {
   }
 
   render() {
-    const { avatar } = this.state;
     return (
       <View className="cardEdit">
-        <Text className="cardEdit-title">请先完善你的名片信息</Text>
-        <Upload
-          onChange={urlkey => {
-            this.handleAvatarChange(urlkey);
-          }}
-          renderContent={
-            <View className="cardEdit-avatar">
-              {this.state.avatar ? (
-                <Image
-                  style={{ position: "relative" }}
-                  src={makeImgLink({
-                    url: this.state.avatar,
-                    type: "jpg",
-                  })}
-                  mode="aspectFill"
-                  className="cardEdit-avatar-content"
-                ></Image>
-              ) : (
-                <Text className="cardEdit-avatar-title">上传头像</Text>
-              )}
-              <View className="cardEdit-avatar-icon">
-                <AtIcon prefixClass="icon" value="camera" size="16" color="white"></AtIcon>
-              </View>
-            </View>
-          }
-        />
-        <Text className="cardEdit-section-title">个人信息</Text>
-        <AtForm>
-          <AtInput
-            placeholderClass="cardEdit-input-placeholder"
-            required={false}
-            border
-            title="姓名"
-            type="text"
-            placeholder="请输入"
-            value={this.state.username}
-            name="username"
-            onChange={e => {
-              this._handleInput({ value: e, key: "username" });
-            }}
-          />
-          <AtInput
-            placeholderClass="cardEdit-input-placeholder"
-            border
-            title="职位"
-            type="text"
-            placeholder="请输入"
-            value={this.state.position}
-            name="position"
-            onChange={e => {
-              this._handleInput({ value: e, key: "position" });
-            }}
-          />
-          <AtInput
-            placeholderClass="cardEdit-input-placeholder"
-            border={false}
-            title="部门"
-            type="text"
-            placeholder="请输入"
-            value={this.state.department}
-            name="department"
-            onChange={e => {
-              this._handleInput({ value: e, key: "department" });
-            }}
-          />
-        </AtForm>
-        <Text className="cardEdit-section-title">联系信息</Text>
-        <AtForm>
-          <AtInput
-            placeholderClass="cardEdit-input-placeholder"
-            required={false}
-            border
-            title="手机号码"
-            type="number"
-            placeholder="请输入"
-            value={this.state.mobile}
-            name="mobile"
-            onChange={e => {
-              this._handleInput({ value: e, key: "mobile" });
-            }}
-          />
-          <AtInput
-            placeholderClass="cardEdit-input-placeholder"
-            border
-            title="邮箱"
-            type="text"
-            placeholder="请输入"
-            value={this.state.email}
-            name="email"
-            onChange={e => {
-              this._handleInput({ value: e, key: "email" });
-            }}
-          />
-          <AtInput
-            placeholderClass="cardEdit-input-placeholder"
-            border={false}
-            title="微信号"
-            type="text"
-            placeholder="请输入"
-            value={this.state.wechat}
-            name="wechat"
-            onChange={e => {
-              this._handleInput({ value: e, key: "wechat" });
-            }}
-          />
-        </AtForm>
+        <View className="cardEdit-formbody">
+          <MenuWrapper title="个人信息">
+            <MenuItem
+              title="头像"
+              height={80}
+              type="image"
+              value={this.state.avatar}
+              name="avatar"
+              onChange={e => {
+                this.handleAvatarChange(e);
+              }}
+            />
+            <MenuItem
+              title="姓名"
+              value={this.state.username}
+              name="username"
+              onChange={e => {
+                this._handleInput({ value: e, key: "username" });
+              }}
+            />
+            <MenuItem
+              title="职位"
+              value={this.state.position}
+              name="position"
+              onChange={e => {
+                this._handleInput({ value: e, key: "position" });
+              }}
+            />
+            <MenuItem
+              title="部门"
+              value={this.state.department}
+              name="department"
+              onChange={e => {
+                this._handleInput({ value: e, key: "department" });
+              }}
+            />
+          </MenuWrapper>
+          <MenuWrapper title="联系信息">
+            <MenuItem
+              title="手机号码"
+              value={this.state.mobile}
+              name="mobile"
+              type="number"
+              onChange={e => {
+                this._handleInput({ value: e, key: "mobile" });
+              }}
+            />
+            <MenuItem
+              title="邮箱"
+              value={this.state.email}
+              name="email"
+              onChange={e => {
+                this._handleInput({ value: e, key: "email" });
+              }}
+            />
+            <MenuItem
+              title="微信号"
+              value={this.state.wechat}
+              name="wechat"
+              onChange={e => {
+                this._handleInput({ value: e, key: "wechat" });
+              }}
+            />
+          </MenuWrapper>
+        </View>
         <View className="cardEdit-submit">
           <JX_Button
             className="cardEdit-btn"
-            title="保存"
+            title="生成电子名片"
             size="large"
             type="primary"
             disabled={!(this.state.username && this.state.mobile)}

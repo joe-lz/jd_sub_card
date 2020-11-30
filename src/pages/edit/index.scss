@@ -1,6 +1,6 @@
 .cardEdit {
   min-height: 100vh;
-  background-color: #F2F2F2;
+  background-color: #E5E5E5;
   &-title {
     display: block;
     padding-top: 60px;
@@ -41,16 +41,8 @@
       text-align: center;
     }
   }
-  &-input-placeholder {
-    font-size: 28px;
-    color: #a7b6c9;
-  }
-  &-section {
-    &-title {
-      display: block;
-      padding: 20px;
-      font-size: 28px;
-    }
+  &-formbody {
+    padding: 0 30px;
   }
   &-submit {
     padding: 80px 50px;

@@ -266,6 +266,7 @@ class Index extends Component {
           my-class="cardmyEdit-submit-btn"
           title="生成电子名片"
           type="primary"
+          size="large"
           onClick={this._handleSubmit.bind(this)} //
         />
         {/* <View className="cardmyEdit-link">

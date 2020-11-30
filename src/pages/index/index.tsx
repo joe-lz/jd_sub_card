@@ -22,6 +22,11 @@ class Index extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      colorBg: "transparent",
+      colorText: "white",
+      borderBottom: false,
+      title: "",
+
       mode: 1,
       isSelf: false, // 是否是自己
       curUserBrand: null,
@@ -101,10 +106,11 @@ class Index extends Component {
     // // 获取brand
     // await this.props.brandStore.getBrandByJxId({ id: bId })
     // const { userbrandStore: { curUserBrand }, brandStore: { curBrand } } = this.props
-
+    const isSelf = curUserBrand && curUserBrand.user.objectId === (currentUser ? currentUser.id : "");
     this.setState({
       curUserBrand,
-      isSelf: curUserBrand && curUserBrand.user.objectId === (currentUser ? currentUser.id : ""),
+      title: isSelf ? "我的名片" : "TA的名片",
+      isSelf,
     });
     Taro.hideLoading();
   }
@@ -339,7 +345,17 @@ class Index extends Component {
       <>
         {curUserBrand && (
           <View className="carddetail">
-            <View className="carddetail-nav">
+            <JX_Navigator
+              my-class="cardmy-navigator"
+              ref={e => {
+                this.navigator = e;
+              }}
+              title={this.state.title}
+              colorBg={this.state.colorBg}
+              colorText={this.state.colorText}
+              borderBottom={this.state.borderBottom}
+            />
+            {/* <View className="carddetail-nav">
               <View
                 className={`carddetail-nav-item ${mode === 1 && "carddetail-nav-item-active"}`}
                 onClick={() => {
@@ -356,7 +372,7 @@ class Index extends Component {
               >
                 横版
               </View>
-            </View>
+            </View> */}
             {cardlist && cardlist.length > 0 && (
               <View className="carddetail-content">
                 {mode === 1 && <CardItem cardItem={card_ver} />}
@@ -380,7 +396,7 @@ class Index extends Component {
                   }}
                 >
                   <View className="carddetail-operations-item-body">
-                    <AtIcon prefixClass="icon" value="dayin" size="22" color="black"></AtIcon>
+                    <AtIcon prefixClass="icon" value="dayin" size="22" color="white"></AtIcon>
                   </View>
                   <View className="carddetail-operations-item-title">印制</View>
                 </View>
@@ -399,13 +415,13 @@ class Index extends Component {
                   }}
                 >
                   <View className="carddetail-operations-item-body">
-                    <AtIcon prefixClass="icon" value="bianji" size="22" color="black"></AtIcon>
+                    <AtIcon prefixClass="icon" value="bianji" size="22" color="white"></AtIcon>
                   </View>
                   <View className="carddetail-operations-item-title">编辑</View>
                 </View>
                 <Button open-type="share" className="carddetail-operations-item">
                   <View className="carddetail-operations-item-body">
-                    <AtIcon prefixClass="icon" value="fenxiang_2" size="22" color="black"></AtIcon>
+                    <AtIcon prefixClass="icon" value="fenxiang_2" size="22" color="white"></AtIcon>
                   </View>
                   <View className="carddetail-operations-item-title">分享</View>
                 </Button>
@@ -416,7 +432,7 @@ class Index extends Component {
                   }}
                 >
                   <View className="carddetail-operations-item-body">
-                    <AtIcon prefixClass="icon" value="xiazai1" size="22" color="black"></AtIcon>
+                    <AtIcon prefixClass="icon" value="xiazai1" size="22" color="white"></AtIcon>
                   </View>
                   <View className="carddetail-operations-item-title">保存</View>
                 </Button>
@@ -454,7 +470,7 @@ class Index extends Component {
                     </View>
                   ) : (
                     <View className="carddetail-operations-item-body">
-                      <AtIcon prefixClass="icon" value="company" size="24" color="black"></AtIcon>
+                      <AtIcon prefixClass="icon" value="company" size="24" color="white"></AtIcon>
                     </View>
                   )}
 
@@ -469,13 +485,13 @@ class Index extends Component {
                   }}
                 >
                   <View className="carddetail-operations-item-body">
-                    <AtIcon prefixClass="icon" value="telephone" size="24" color="black"></AtIcon>
+                    <AtIcon prefixClass="icon" value="telephone" size="24" color="white"></AtIcon>
                   </View>
                   <View className="carddetail-operations-item-title">立即联系</View>
                 </Button>
                 <Button open-type="share" className="carddetail-operations-item">
                   <View className="carddetail-operations-item-body">
-                    <AtIcon prefixClass="icon" value="fenxiang_2" size="22" color="black"></AtIcon>
+                    <AtIcon prefixClass="icon" value="fenxiang_2" size="22" color="white"></AtIcon>
                   </View>
                   <View className="carddetail-operations-item-title">分享</View>
                 </Button>
@@ -486,7 +502,7 @@ class Index extends Component {
                   }}
                 >
                   <View className="carddetail-operations-item-body">
-                    <AtIcon prefixClass="icon" value="xiazai1" size="22" color="black"></AtIcon>
+                    <AtIcon prefixClass="icon" value="xiazai1" size="22" color="white"></AtIcon>
                   </View>
                   <View className="carddetail-operations-item-title">保存</View>
                 </Button>
